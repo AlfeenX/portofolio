@@ -50,41 +50,54 @@ export const Techs = [
   {
     id: 1,
     name: "React",
-    image: "/images/logos/React.png",
+    image: "/images/logos/react.webp",
   },
   {
     id: 2,
     name: "Node.js",
-    image: "/images/logos/NodeJS.png",
+    image: "/images/logos/nodejs.webp",
   },
   {
     id: 3,
     name: "Laravel",
-    image: "/images/logos/Laravel.png",
+    image: "/images/logos/laravel.webp",
   },
   {
     id: 4,
     name: "JavaScript",
-    image: "/images/logos/Javascript.png",
+    image: "/images/logos/javascript.webp",
   },
   {
     id: 5,
     name: "TypeScript",
-    image: "/images/logos/Typescript.png",
+    image: "/images/logos/typescript.webp",
   },
   {
     id: 6,
     name: "Python",
-    image: "/images/logos/Python.webp",
+    image: "/images/logos/python.webp",
   },
   {
     id: 7,
     name: "MySQL",
-    image: "/images/logos/MySQL.png",
+    image: "/images/logos/mysql.webp",
   },
   {
     id: 8,
     name: "PostgreSQL",
-    image: "/images/logos/PostgreSQL.png",
+    image: "/images/logos/postgresql.webp",
+  },
+];
+
+export const photos = [
+  {
+    id: 1,
+    name: "Photo 1",
+    image: "/images/photos/photo1.webp",
+  },
+  {
+    id: 2,
+    name: "Photo 2",
+    image: "/images/photos/photo2.webp",
   },
 ];

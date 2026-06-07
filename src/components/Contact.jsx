@@ -1,5 +1,5 @@
 import { TfiArrowTopRight } from "react-icons/tfi";
-import { socialLinks, Techs } from "../../constants/constant";
+import { socialLinks, Techs } from "../../constants";
 
 const Contact = () => {
   return (
@@ -10,7 +10,7 @@ const Contact = () => {
 
       <div className="absolute top-1/2 left-[53%] transform -translate-x-1/2 -translate-y-1/2 flex items-center whitespace-nowrap">
         <h1 className="text-[150px] font-thunder leading-none">CONTACT ME</h1>
-        <TfiArrowTopRight className="text-amber-500 shrink-0 m-0" size={150} />
+        <TfiArrowTopRight className="text-amber-500 shrink-0 m-0" size={100} />
       </div>
 
       <div className="absolute top-[60%] left-1/2 transform -translate-x-1/2 flex gap-4 flex-wrap justify-center max-w-3xl">
