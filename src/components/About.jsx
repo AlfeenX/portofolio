@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section className=" h-screen justify-center items-center flex flex-col overflow-hidden border border-gray-200">
+    <section className="min-h-dvh justify-center items-center flex flex-col overflow-hidden border border-gray-200">
       <p className="font-nohemi text-4xl text-center max-w-7xl p-4">
         A passionate full stack developer with a knack for crafting seamless
         user experiences and robust backend solutions. With a strong foundation
