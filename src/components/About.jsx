@@ -85,8 +85,8 @@ const About = () => {
       ref={sectionRef}
       className="relative z-30 min-h-screen flex flex-col items-center justify-center px-6 text-center"
     >
-      <h1 ref={stampRef} className="absolute left-[50%] top-[10%] -translate-x-1/2 font-blowbrush text-3xl md:text-6xl -rotate-5 text-amber-500 pointer-events-none border-4 border-amber-500 py-2 px-4">
-        ABOUT ME?
+      <h1 ref={stampRef} className="absolute left-[50%] top-[10%] -translate-x-1/2 font-blowbrush text-3xl md:text-6xl -rotate-5 text-amber-500 pointer-events-none border-4 border-amber-500 py-2 px-4 bg-amber-100">
+        ABOUT ME
       </h1>
 
       <p className="font-nohemi text-2xl md:text-3xl leading-normal max-w-5xl words-container"
