@@ -4,7 +4,7 @@ export const projects = [
     title: "Festix",
     description: "Event Management Platform",
     image:
-      "https://i.pinimg.com/1200x/1b/8c/9e/1b8c9e7a3d2f5a4c6e5b8f1a2c3d4e5.jpg",
+      "https://i.pinimg.com/736x/60/b4/e2/60b4e258c046893b1c654bbe4363e230.jpg",
     color: "#4b5563",
     githubUrl: "https://github.com/AlfeenX/Festix",
   },

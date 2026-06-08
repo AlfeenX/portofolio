@@ -15,14 +15,7 @@ const App = () => {
 
       <Hero/>
 
-      <div
-        className="
-          relative
-          z-50
-          bg-white
-          mt-[-100vh]
-        "
-      ></div>
+      <div className="relative z-50 bg-white mt-[-100vh]"></div>
 
       <About/>
 

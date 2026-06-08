@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const text =
   "A passionate full stack developer with a knack for crafting seamless user experiences and robust backend solutions. With a strong foundation in both frontend and backend technologies, I thrive on creating innovative applications that solve real-world problems. My journey in coding has been fueled by curiosity and a relentless drive to learn, making me adept at navigating the ever-evolving landscape of web development.";
@@ -37,6 +34,13 @@ const About = () => {
       },
     });
 
+    tl.fromTo(sectionRef.current, {
+      backgroundColor : "rgba(255,255,255,0)"
+    }, {
+      backgroundColor : "rgba(255,255,255,1)",
+      duration : 0.1
+    })
+
     tl.to(stampRef.current, {
       scale: 0.9,
       rotate: -5,
@@ -56,10 +60,18 @@ const About = () => {
       duration: 0.05,
     });
 
-    // Delay sedikit sebelum reveal text
     tl.to({}, { duration: 0.2 });
 
-    // Reveal text per kata
+    tl.fromTo(".words-container",{
+      opacity: 0,
+      scale: 1.08
+    },{
+      opacity: 1,
+      scale: 1,
+      duration: 0.2
+    })
+
+
     tl.to(words, {
       opacity: 1,
       stagger: 0.05,
@@ -71,13 +83,13 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-50 min-h-screen bg-white flex flex-col items-center justify-center px-6 text-center"
+      className="relative z-30 min-h-screen flex flex-col items-center justify-center px-6 text-center"
     >
-      <h1 ref={stampRef} className="absolute left-[53%] top-[10%] -translate-x-1/2 font-blowbrush text-3xl md:text-6xl -rotate-5 text-amber-500 pointer-events-none border-4 border-amber-500 py-2 px-4">
+      <h1 ref={stampRef} className="absolute left-[50%] top-[10%] -translate-x-1/2 font-blowbrush text-3xl md:text-6xl -rotate-5 text-amber-500 pointer-events-none border-4 border-amber-500 py-2 px-4">
         ABOUT ME?
       </h1>
 
-      <p className="font-nohemi text-2xl md:text-3xl leading-normal max-w-5xl"
+      <p className="font-nohemi text-2xl md:text-3xl leading-normal max-w-5xl words-container"
       >
         {text.split(" ").map((word, index) => (
           <span
