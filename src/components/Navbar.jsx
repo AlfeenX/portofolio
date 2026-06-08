@@ -98,19 +98,19 @@ const Navbar = () => {
         >
           <ul className="flex gap-6 whitespace-nowrap">
             <li className="nav-item font-bold">
-              HOME
+              <a href="#home">HOME</a>
             </li>
 
             <li className="nav-item font-bold">
-              ABOUT
+              <a href="#about">ABOUT</a>
             </li>
 
             <li className="nav-item font-bold">
-              PROJECTS
+              <a href="#projects">PROJECTS</a>
             </li>
 
             <li className="nav-item font-bold">
-              CONTACT
+              <a href="#contact">CONTACT</a>
             </li>
           </ul>
         </div>

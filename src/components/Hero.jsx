@@ -104,7 +104,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative h-screen overflow-hidden">
+    <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
       <div ref={contentRef} className="absolute inset-0">
         <div className="absolute inset-0 flex-center">
           <h1 className="font-thunder text-8xl md:text-[10rem] z-30 overflow-hidden">

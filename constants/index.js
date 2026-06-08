@@ -42,7 +42,7 @@ export const socialLinks = [
   {
     id: 3,
     name: "Instagram",
-    url: "https://www.instagram.com/alfeenx/",
+    url: "https://www.instagram.com/alfnb_/",
   },
 ];
 

@@ -10,7 +10,6 @@ const Projects = () => {
     const sections = gsap.utils.toArray(".project-section");
     if (sections.length <= 1) return;
 
-    // Inisialisasi Timeline Utama dengan Pinning layar
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -39,11 +38,10 @@ const Projects = () => {
 
       tl.to(section, {
         yPercent: 90,
-        duration: 0.4, // Cepat saja untuk efek ngintip awal
+        duration: 0.4,
         ease: "power1.out"
-      }, "<"); // Berjalan berbarengan dengan animasi mengecil di atas
+      }, "<");
 
-      // 3. Slide ini LANJUT NAIK PENUH & Kontennya membesar/muncul (90% -> 0%)
       tl.to(section, {
         yPercent: 0,
         duration: 0.8,
@@ -61,7 +59,7 @@ const Projects = () => {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#0a0a0a]">
+    <div id="projects" ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#0a0a0a]">
       {projects.map((project, index) => (
         <section
           key={project.id}
@@ -70,20 +68,17 @@ const Projects = () => {
             zIndex: index + 1,
           }}
         >
-          {/* Background Layer */}
           <div className="absolute inset-0 overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${project.image})` }}
             />
-            {/* Overlay Gelap */}
             <div
               className="absolute inset-0"
               style={{ backgroundColor: project.color, opacity: 0.80 }}
             />
           </div>
 
-          {/* Wrapper Konten (Ini yang dianimasikan scale & opacity-nya) */}
           <div className="project-content relative z-10 h-full flex flex-col justify-center items-center will-change-transform">
             <h1 className="text-8xl font-bold text-white select-none tracking-tight">
               {project.title}
