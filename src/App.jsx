@@ -12,6 +12,8 @@ const App = () => {
   return (
     <main className="mx-auto">
       <Navbar />
+
+      <Hero/>
     </main>
   );
 };

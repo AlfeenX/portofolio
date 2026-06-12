@@ -103,8 +103,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav className="nav-style fixed top-0 left-0 w-full z-50">
-        <div className="font-nohemi h-7 overflow-hidden">
+      <nav className="nav-style">
+        <div className="font-nohemi h-7 md:h-[5vh] overflow-hidden md:text-[1.5vw]">
           <div ref={nameRef} className="cursor-default">
             <p>ALFIN</p>
             <p>ALFIN</p>
@@ -112,14 +112,14 @@ const Navbar = () => {
         </div>
 
         <div
-          className="font-geist hidden md:inline text-xs text-gray-400"
+          className="font-geist hidden md:inline text-[0.8vw] text-gray-400"
           id="time"
         >
-          Kediri, Indonesia - {formattedTime} WIB
+          Kediri, Indonesia - {formattedTime} (UTC+07:00)
         </div>
 
         <div
-          className="font-nohemi cursor-pointer select-none"
+          className="font-nohemi cursor-pointer select-none md:text-[1.5vw]"
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             color: menuOpen ? "#ffffff" : "#000000",
