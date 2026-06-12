@@ -12,16 +12,6 @@ const App = () => {
   return (
     <main className="mx-auto">
       <Navbar />
-
-      <Hero/>
-
-      <div className="relative z-50 bg-white mt-[-100vh]"></div>
-
-      <About/>
-
-      <Projects/>
-
-      <Contact/>
     </main>
   );
 };

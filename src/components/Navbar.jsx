@@ -1,136 +1,136 @@
-import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [time, setTime] = useState(new Date());
+  const [menuOpen, setMenuOpen] = useState(false);
+  const overlayRef = useRef(null);
+  const menuItemsRef = useRef(null);
+  const nameRef = useRef(null);
 
-  const menuContainer = useRef(null);
-  const labelRef = useRef(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-  const menuTl = useRef(null);
+    return () => clearInterval(interval);
+  }, []);
 
-  useGSAP(() => {
-    gsap.fromTo(
-      ".logo-text",
-      {
-        yPercent: 0,
-      },
-      {
-        yPercent: -50,
-        scrollTrigger: {
-          trigger: document.body,
-          start: "50px top",
-          end: "200px top",
-          scrub: 0.8,
-        },
-      }
-    );
+  const formattedTime = time.toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
   });
 
   useGSAP(() => {
-    gsap.set(menuContainer.current, {
-      width: 0,
-    });
+    const tl = gsap.timeline({ defaults: { duration: 0.5 } });
+    tl.to(nameRef.current, { yPercent: -50 });
+    tl.reversed(true);
 
-    gsap.set(labelRef.current, {
-      yPercent: 0,
-    });
+    const doCoolStuff = () => {
+      tl.reversed(!tl.reversed());
+    };
 
-    menuTl.current = gsap.timeline({ paused: true });
+    nameRef.current.addEventListener("mouseenter", doCoolStuff);
+    nameRef.current.addEventListener("mouseleave", doCoolStuff);
 
-    menuTl.current
-      .to(
-        menuContainer.current,
+    return () => {
+      nameRef.current.removeEventListener("mouseenter", doCoolStuff);
+      nameRef.current.removeEventListener("mouseleave", doCoolStuff);
+    };
+  });
+
+  useGSAP(() => {
+    const overlay = overlayRef.current;
+    const items = menuItemsRef.current?.querySelectorAll(".menu-item");
+
+    if (menuOpen) {
+      gsap.to(nameRef.current, { color: "#ffffff", duration: 0.7 });
+      gsap.to(overlay, {
+        clipPath: "inset(0% 0% 0% 0% round 0px)",
+        duration: 0.7,
+        ease: "power4.inOut",
+      });
+
+
+      gsap.fromTo(
+        items,
+        { yPercent: 100, opacity: 0 },
         {
-          width: 350,
-          duration: 0.4,
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.1,
           ease: "power3.out",
+          delay: 0.5,
         },
-        0
-      )
-      .to(
-        labelRef.current,
-        {
-          yPercent: -50,
-          duration: 0.3,
-          ease: "power2.out",
-        },
-        0
-      )
-      .from(
-        menuContainer.current.querySelectorAll(".nav-item"),
-        {
-          x: 30,
-          opacity: 0,
-          stagger: 0.08,
-          duration: 0.3,
-        },
-        "-=0.15"
       );
-  }, []);
-
-  const toggleMenu = () => {
-    if (!menuTl.current) return;
-
-    if (isOpen) {
-      menuTl.current.reverse();
     } else {
-      menuTl.current.play();
+      gsap.to(items, {
+        yPercent: 100,
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.05,
+        ease: "power3.in",
+      });
+
+      gsap.to(nameRef.current, { color: "#000000", duration: 0.3 });
+      gsap.to(overlay, {
+        clipPath: "inset(0% 0% 100% 100% round 0px)",
+        duration: 0.7,
+        ease: "power4.inOut",
+        delay: 0.2,
+      });
+
     }
+  }, [menuOpen]);
 
-    setIsOpen(!isOpen);
-  };
-
+  const menuLinks = ["ABOUT", "PROJECTS", "CONTACT"];
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center">
-      <div className="h-7 overflow-hidden">
-        <div className="logo-text">
-          <p className="font-bold text-lg">HELLO!</p>
-          <p className="font-bold text-lg">ALFIN.</p>
+    <>
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 bg-black z-40 flex flex-col justify-end px-4 py-16 md:px-8"
+        style={{ clipPath: "inset(0% 0% 100% 100% round 0px)" }}
+      >
+        <div ref={menuItemsRef} className="flex flex-col gap-4">
+          {menuLinks.map((link) => (
+            <div key={link} className="overflow-hidden">
+              <a href="#" className="menu-item font-nohemi text-white/60 text-4xl md:text-6xl cursor-pointer hover:text-white transition-opacity block">{link}</a>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div
-          ref={menuContainer}
-          className="overflow-hidden"
-        >
-          <ul className="flex gap-6 whitespace-nowrap">
-            <li className="nav-item font-bold">
-              <a href="#home">HOME</a>
-            </li>
-
-            <li className="nav-item font-bold">
-              <a href="#about">ABOUT</a>
-            </li>
-
-            <li className="nav-item font-bold">
-              <a href="#projects">PROJECTS</a>
-            </li>
-
-            <li className="nav-item font-bold">
-              <a href="#contact">CONTACT</a>
-            </li>
-          </ul>
-        </div>
-
-        <button
-          onClick={toggleMenu}
-          className="h-7 overflow-hidden"
-        >
-          <div ref={labelRef}>
-            <p className="font-bold text-lg">
-              MENU
-            </p>
-
-            <p className="font-bold text-lg">
-              X
-            </p>
+      <nav className="nav-style fixed top-0 left-0 w-full z-50">
+        <div className="font-nohemi h-7 overflow-hidden">
+          <div ref={nameRef} className="cursor-default">
+            <p>ALFIN</p>
+            <p>ALFIN</p>
           </div>
-        </button>
-      </div>
-    </nav>
+        </div>
+
+        <div
+          className="font-geist hidden md:inline text-xs text-gray-400"
+          id="time"
+        >
+          Kediri, Indonesia - {formattedTime} WIB
+        </div>
+
+        <div
+          className="font-nohemi cursor-pointer select-none"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            color: menuOpen ? "#ffffff" : "#000000",
+            zIndex: 51,
+            position: "relative",
+          }}
+        >
+          {menuOpen ? "CLOSE." : "MENU."}
+        </div>
+      </nav>
+    </>
   );
 };
 
